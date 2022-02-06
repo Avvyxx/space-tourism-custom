@@ -122,7 +122,7 @@
 }
 
 .crew {
-  @apply bg-crewMobile md:bg-crewTablet xl:bg-crewDesk bg-no-repeat;
+  @apply h-full bg-crewMobile md:bg-crewTablet xl:bg-crewDesk bg-no-repeat;
   background-size: cover;
 
   .limit {
@@ -130,62 +130,86 @@
     margin: 0 auto;
 
     .main {
-      @apply flex flex-col items-center xl:items-stretch gap-[32px] md:gap-[60px] xl:px-[212px];
+      @apply flex;
 
-      .section {
-        @apply text-base md:text-[20px] xl:text-[28px] tracking-[2.7px] md:tracking-[3.38px] font-barlow text-white md:self-start md:ml-[38.5px] xl:ml-0;
-
-        .number {
-          @apply text-[rgba(255,255,255,0.25)] font-bold mr-4 xl:mr-[24px];
-        }
+      .arrow {
+        @apply absolute hidden xl:static xl:block;
       }
 
-      .content {
-        @apply md:flex md:flex-col-reverse xl:flex-row-reverse justify-between md:gap-[40px] xl:gap-[108.57px];
-        .imgContainer {
-          @apply border-b xl:relative xl:top-[-100px] md:border-none border-solid border-[#383B4B] flex justify-center;
+      .arrow.hide {
+        @apply cursor-default;
+      }
 
-          img {
-            @apply w-[auto] h-[223px] md:h-[572px] xl:h-[712px];
+      .arrow.hide svg path {
+        @apply stroke-[transparent];
+      }
+
+      .arrow.hide:hover svg path {
+        @apply stroke-[transparent];
+      }
+
+      .arrow:hover svg path {
+        @apply stroke-white;
+      }
+
+      .notArrow {
+        @apply flex flex-col items-center xl:items-stretch gap-[32px] md:gap-[60px] xl:px-[0] xl:w-full;
+
+        .section {
+          @apply text-base md:text-[20px] xl:text-[28px] tracking-[2.7px] md:tracking-[3.38px] font-barlow text-white md:self-start md:ml-[38.5px] xl:ml-0;
+
+          .number {
+            @apply text-[rgba(255,255,255,0.25)] font-bold mr-4 xl:mr-[24px];
           }
         }
 
-        .container {
-          @apply flex flex-col md:flex-col-reverse xl:items-start justify-center pt-[32px] md:pt-0 gap-[32px] md:gap-[40px] xl:gap-[120px];
-          .radio {
-            @apply flex justify-center gap-4;
-            input {
-              @apply absolute hidden;
-            }
+        .content {
+          @apply md:flex md:flex-col-reverse xl:flex-row-reverse justify-between md:gap-[40px] xl:gap-[108.57px];
+          .imgContainer {
+            @apply border-b xl:relative xl:top-[-100px] md:border-none border-solid border-[#383B4B] flex justify-center;
 
-            input + label {
-              .label {
-                @apply hover:cursor-pointer w-[10px] h-[10px] xl:w-[15px] xl:h-[15px] bg-[#979797] opacity-[0.17] rounded-full;
-              }
-            }
-
-            input:checked + label {
-              .label {
-                @apply bg-white opacity-[1];
-              }
+            img {
+              @apply w-[auto] h-[223px] md:h-[572px] xl:h-[712px];
             }
           }
 
-          .crewDescription {
-            @apply flex flex-col gap-4 xl:gap-[27px] md:px-[90px] xl:px-0;
-            .spacing {
-              @apply flex flex-col gap-2 xl:gap-[15px];
-              .position {
-                @apply text-base md:text-[24px] xl:text-[32px] font-bellefair tracking-[0] leading-[18px] md:leading-[28px] xl:leading-[37px] text-[rgba(255,255,255,0.5)];
+          .container {
+            @apply flex flex-col md:flex-col-reverse xl:items-start justify-center pt-[32px] md:pt-0 gap-[32px] md:gap-[40px] xl:gap-[120px];
+            .radio {
+              @apply flex justify-center gap-4;
+              input {
+                @apply absolute hidden;
               }
 
-              .name {
-                @apply text-[24px] md:text-[40px] xl:text-[56px] font-bellefair leading-[28px] md:leading-[46px] xl:leading-[64px] text-white;
+              input + label {
+                .label {
+                  @apply hover:cursor-pointer w-[10px] h-[10px] xl:w-[15px] xl:h-[15px] bg-[#979797] opacity-[0.17] rounded-full;
+                }
+              }
+
+              input:checked + label {
+                .label {
+                  @apply bg-white opacity-[1];
+                }
               }
             }
 
-            .bio {
-              @apply text-[15px] md:h-[84px] xl:w-[444px] xl:h-[128px]  md:text-base xl:text-[18px] font-regBar leading-[25px] md:leading-[28px] xl:leading-[32px] text-grey;
+            .crewDescription {
+              @apply flex flex-col gap-4 xl:gap-[27px] md:px-[90px] xl:px-0;
+              .spacing {
+                @apply flex flex-col gap-2 xl:gap-[15px];
+                .position {
+                  @apply text-base md:text-[24px] xl:text-[32px] font-bellefair tracking-[0] leading-[18px] md:leading-[28px] xl:leading-[37px] text-[rgba(255,255,255,0.5)];
+                }
+
+                .name {
+                  @apply text-[24px] md:text-[40px] xl:text-[56px] font-bellefair leading-[28px] md:leading-[46px] xl:leading-[64px] text-white;
+                }
+              }
+
+              .bio {
+                @apply text-[15px] md:h-[84px] xl:w-[444px] xl:h-[128px]  md:text-base xl:text-[18px] font-regBar leading-[25px] md:leading-[28px] xl:leading-[32px] text-grey;
+              }
             }
           }
         }
@@ -201,6 +225,7 @@
   .limit {
     @apply flex flex-col h-full  max-w-[1920px] pt-[24px] md:pt-0 xl:pt-[40px] gap-[24px] md:gap-[40px] xl:gap-[76px];
     margin: 0 auto;
+
     header {
       @apply px-[25px] md:px-0 md:pl-[39px] xl:pl-[73.3px];
     }
@@ -238,7 +263,7 @@
             }
 
             input + label p {
-              @apply relative hover:cursor-pointer flex justify-center items-center text-base md:text-[24px] xl:text-[32px] font-bellefair text-white rounded-full w-[40px] h-[40px] md:w-[60px] md:h-[60px]  xl:w-[80px] xl:h-[80px] bg-[transparent] border border-solid border-[rgba(255,255,255,0.25)] hover:border-white;
+              @apply relative hover:cursor-pointer flex justify-center items-center text-base md:text-[24px] xl:text-[32px] font-bellefair text-white rounded-full w-[40px] h-[40px] md:w-[60px] md:h-[60px]  xl:w-[80px] xl:h-[80px] bg-[transparent] border border-solid border-[rgba(255,255,255,0.25)] xl:hover:border-white;
             }
 
             input:checked + label p {
